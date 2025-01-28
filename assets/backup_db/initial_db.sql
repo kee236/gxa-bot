@@ -1,6 +1,29 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 
+CREATE TABLE `gemini_config` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,
+    `api_key` VARCHAR(255) NOT NULL,
+    `updated_at` DATETIME NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS `ai_assistant_config` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `ai_provider` ENUM('openai', 'gemini') NOT NULL,
+  `api_key` VARCHAR(255) NOT NULL,
+  `default_model` VARCHAR(255) NOT NULL DEFAULT 'gpt-3.5-turbo',
+  `prompt_template` TEXT NOT NULL,
+  `usage_limit` INT(11) NOT NULL DEFAULT 1000,
+  `created_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+
+
 CREATE TABLE IF NOT EXISTS `add_ons` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `add_on_name` varchar(255) NOT NULL,
