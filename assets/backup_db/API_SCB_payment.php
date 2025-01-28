@@ -43,3 +43,23 @@ class SCB_Payment {
     }
 }
 ?>
+
+
+<?php
+
+class PaymentModel extends CI_Model {
+
+    public function recordTransaction($user_id, $payment_method, $transaction_id, $amount, $status) {
+        $data = [
+            'user_id' => $user_id,
+            'payment_method' => $payment_method,
+            'transaction_id' => $transaction_id,
+            'amount' => $amount,
+            'currency' => 'THB',
+            'status' => $status,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('payment_transactions', $data);
+    }
+}
+?>
